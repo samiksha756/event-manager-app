@@ -5,7 +5,7 @@ It supports organiser and attendee flows, event publishing, ticket configuration
 
 ---
 
-## ✨ Features
+## Features
 
 - **Organiser workflow**
   - Create, edit, publish/unpublish events

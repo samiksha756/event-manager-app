@@ -73,20 +73,23 @@ http://localhost:3000
 
 Once the app is running, test the following pages:
 
-Main Home Page
-/ – Links to organiser and attendee pages
+**Main Home Page**
+```/ – Links to organiser and attendee pages
+```
 
-Organiser Pages:
-/organiser – Home page for organisers
+**Organiser Pages:**
+```/organiser – Home page for organisers
 /settings – Site name and description
 /create-event – Create a draft event
 /edit/:id – Edit event details
 /publish/:id – Publish an event
 /delete/:id – Delete an event
 /bookings – View all attendee bookings (extension implemented)
+```
 
-Attendee Pages
-/attendee-home – View published events
+**Attendee Pages**
+```/attendee-home – View published events
 /attendee/:id – View details and book tickets for an event
+```
 
 

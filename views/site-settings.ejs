@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Site Settings</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="container mt-5">
+
+  <!-- I coded the following code with no assistance -->
+  <!-- Header -->
+  <%- include('partials/organiser-header') %>
+    <br>
+
+    <!-- Page Heading -->
+    <h1>Site Settings Page</h1>
+
+    <!-- Site Settings Form -->
+    <form action="/settings" method="POST" class="mt-4 needs-validation" novalidate>
+
+      <!-- Site Name Input -->
+      <div class="mb-3">
+        <label for="site_name" class="form-label">Site Name</label>
+        <input type="text" class="form-control" id="site_name" name="site_name" value="<%= settings.site_name %>"
+          required>
+        <div class="invalid-feedback">Please enter the site name.</div>
+      </div>
+
+      <!-- Site Description Input -->
+      <div class="mb-3">
+        <label for="site_description" class="form-label">Site Description</label>
+        <textarea class="form-control" id="site_description" name="site_description"
+          required><%= settings.site_description %></textarea>
+        <div class="invalid-feedback">Please enter the site description.</div>
+      </div>
+
+      <!-- Submit and Back Buttons -->
+      <button type="submit" class="btn btn-primary">Save Settings</button>
+      <a href="/organiser" class="btn btn-secondary ms-2">Back</a>
+    </form>
+
+
+    <!-- Client-Side Form Validation Script -->
+    <script>
+      (function () {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      })();
+    </script>
+
+    <!-- Footer -->
+    <%- include('partials/organiser-footer') %>
+      <!-- I coded up till here with no assistance -->
+
+</body>
+
+</html>

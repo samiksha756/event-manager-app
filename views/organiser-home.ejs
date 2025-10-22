@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Organiser Home Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="container mt-5">
+
+  <!-- Format Date Helper Function -->
+  <% function formatDate(isoString) { if (!isoString) return '' ; const date=new Date(isoString); // Get day with suffix
+    const day=date.getDate(); const daySuffix=(d)=> {
+    if (d > 3 && d < 21) return 'th' ; switch (d % 10) { case 1: return 'st' ; case 2: return 'nd' ; case 3: return 'rd'
+      ; default: return 'th' ; } }; const month=date.toLocaleString('en-US', { month: 'long' }); const
+      year=date.getFullYear(); let hours=date.getHours(); const minutes=date.getMinutes().toString().padStart(2, '0' );
+      const seconds=date.getSeconds().toString().padStart(2, '0' ); const ampm=hours>= 12 ? 'pm' : 'am';
+      hours = hours % 12 || 12;
+
+      return `${day}${daySuffix(day)} ${month} ${year} at ${hours}:${minutes}:${seconds} ${ampm}`;
+      } %>
+
+      <!-- I coded the following code with no assistance -->
+      <!-- Header -->
+      <%- include('partials/organiser-header') %>
+
+        <!-- Page Title -->
+        <br>
+        <h1>Organiser Home Page</h1>
+
+        <!-- Site Information Alert -->
+        <div class="alert alert-info">
+          <strong>
+            <%= settings.site_name %>
+          </strong>: <%= settings.site_description %>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <a href="/settings" class="btn btn-secondary">Site Settings</a>
+        <a href="/create-event" class="btn btn-primary">Create New Event</a>
+        <a href="/bookings" class="btn btn-outline-primary float-end">View All Bookings</a>
+
+        <!-- I coded up till here with no assistance -->
+        <!-- Published Events Section -->
+        <hr>
+        <h2>Published Events</h2>
+        <% if (publishedEvents.length> 0) { %>
+          <ul class="list-group">
+            <% publishedEvents.forEach(event=> { %>
+              <li class="list-group-item">
+                <!-- Event Details -->
+                <strong>
+                  <%= event.title %>
+                </strong><br>
+                Created at: <%= event.created_at ? formatDate(event.created_at) : 'Not available' %><br>
+                  Published at: <%= event.published_at ? formatDate(event.published_at) : 'Not yet published' %><br>
+                    Event Date: <%= event.event_date ? formatDate(event.event_date) : 'Not set' %><br>
+                      <%= event.description %><br>
+
+                        <!-- Ticket Information -->
+                        <p>
+                          Number of Full-Price Tickets: <%= event.full_price_tickets || 0 %><br>
+                            Price of Full-Price Tickets: $<%= event.full_price_amount || 0 %><br>
+                              Number of Concession-Priced Tickets: <%= event.concession_tickets || 0 %><br>
+                                Price of Concession-Priced Tickets: $<%= event.concession_amount || 0 %>
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <a href="/attendee/<%= event.id %>" class="btn btn-primary btn-sm me-2">Attendee Page</a>
+                        <form action="/delete/<%= event.id %>" method="POST" class="d-inline">
+                          <button class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+              </li>
+              <% }) %>
+          </ul>
+          <% } else { %>
+            <!-- No Published Events Message -->
+            <p>No published events yet.</p>
+            <% } %>
+
+              <!-- I coded the following code with no assistance -->
+              <!-- Draft Events Section -->
+              <hr>
+              <h2>Draft Events</h2>
+              <% if (draftEvents.length> 0) { %>
+                <ul class="list-group">
+                  <% draftEvents.forEach(event=> { %>
+                    <li class="list-group-item">
+                      <!-- Event Details -->
+                      <strong>
+                        <%= event.title %>
+                      </strong><br>
+                      Created at: <%= event.created_at ? formatDate(event.created_at) : 'Not available' %><br>
+                        Published at: <%= event.published_at ? formatDate(event.published_at) : 'Not yet published' %>
+                          <br>
+                          Event Date: <%= event.event_date ? formatDate(event.event_date) : 'Not set' %><br>
+                            <%= event.description %><br>
+                              <!-- I coded up till here with no assistance -->
+
+                              <!-- Ticket Information -->
+                              <p>
+                                Number of Full-Price Tickets: <%= event.full_price_tickets || 0 %><br>
+                                  Price of Full-Price Tickets: $<%= event.full_price_amount || 0 %><br>
+                                    Number of Concession-Priced Tickets: <%= event.concession_tickets || 0 %><br>
+                                      Price of Concession-Priced Tickets: $<%= event.concession_amount || 0 %>
+                              </p>
+
+                              <!-- Action Buttons -->
+                              <a href="/edit/<%= event.id %>" class="btn btn-sm me-2"
+                                style="background-color: #6f42c1; color: white;">Edit</a>
+                              <form action="/publish/<%= event.id %>" method="POST" class="d-inline">
+                                <button class="btn btn-success btn-sm">Publish</button>
+                              </form>
+                              <form action="/delete/<%= event.id %>" method="POST" class="d-inline">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                              </form>
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } else { %>
+                  <!-- No Draft Events Message -->
+                  <p>No draft events yet.</p>
+                  <% } %>
+
+                    <!-- I coded the following code with no assistance -->
+                    <!-- Footer -->
+                    <%- include('partials/organiser-footer') %>
+                      <!-- I coded up till here with no assistance -->
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendee Home Page</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body class="container mt-5">
+
+    <!-- I coded the following code with no assistance -->
+    <!-- Header -->
+    <%- include('partials/attendee-header') %>
+        <br>
+
+        <!-- Main heading for the page -->
+        <h1>Welcome to the Attendee Home Page</h1>
+
+        <!-- Site name and description fetched from site settings -->
+        <div class="alert alert-info">
+            <strong>
+                <%= settings.site_name %>
+            </strong>: <%= settings.site_description %>
+        </div>
+
+        <!-- Sub-heading for the event list -->
+        <p>Browse all published events below:</p>
+        <hr>
+        <!-- I coded up till here with no assistance -->
+        <!-- If no published events exist -->
+        <% if (events.length===0) { %>
+            <p>No events are currently available.</p>
+
+            <!-- If there are published events -->
+            <% } else { %>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <!-- Loop through each event and display a card -->
+                    <% events.forEach(event=> { %>
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <!-- Event details -->
+                                    <h5 class="card-title">
+                                        <%= event.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= event.description %>
+                                    </p>
+                                    <!-- I coded the following code with no assistance -->
+                                    <% if (event.event_date) { %>
+                                        <p><strong>Event Date:</strong>
+                                            <%= new Date(event.event_date).toLocaleString('en-GB') %>
+                                        </p>
+                                        <% } %>
+                                            <p><strong>Published At:</strong>
+                                                <%= new Date(event.published_at).toLocaleString('en-GB') %>
+                                            </p>
+                                            <!-- Button to view event details -->
+                                            <a href="/attendee/<%= event.id %>" class="btn btn-primary">View Event</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+                <% } %>
+
+                    <!-- Footer -->
+                    <%- include('partials/attendee-footer') %>
+                        <!-- I coded up till here with no assistance -->
+</body>
+
+</html>

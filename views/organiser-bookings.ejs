@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <!-- I coded the following code with no assistance -->
+    <!-- Header -->
+    <%- include('partials/organiser-header') %>
+        <br>
+
+        <div class="booking-header text-center">
+
+            <!-- Page heading-->
+            <h1>Booking Page</h1>
+            <p>Show all event bookings</p>
+        </div>
+
+        <!-- Booking Table -->
+        <div class="table-wrapper">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <!-- Table column headers -->
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Attendee</th>
+                        <th>Event</th>
+                        <th>Event Date</th>
+                        <th>Booking Date</th>
+                        <th>Tickets</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- I coded up till here with no assistance -->
+                    <% if (bookings.length===0) { %>
+                        <!-- Row shown when there are no bookings -->
+                        <tr>
+                            <td colspan="7" class="text-center">No bookings yet.</td>
+                        </tr>
+                        <% } else { %>
+                            <!-- Iterate over each booking and display its data -->
+                            <% bookings.forEach(b=> { %>
+                                <tr>
+                                    <td>
+                                        <%= b.booking_id %>
+                                    </td>
+                                    <td>
+                                        <%= b.attendee_name %>
+                                    </td>
+                                    <td>
+                                        <%= b.event_title %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(b.event_date).toLocaleString('en-GB') %>
+                                    </td>
+
+                                    <!-- I coded the following code with no assistance -->
+                                    <td>
+                                        <%= new Date(b.booking_date).toLocaleString('en-GB') %>
+                                    </td>
+                                    <td>
+                                        <%= b.full_price_quantity %>x Full ($<%= b.full_price_amount %>)<br>
+                                                <%= b.concession_quantity %>x Concession ($<%= b.concession_amount %>)
+                                    </td>
+                                    <td><strong>$<%= b.total.toFixed(2) %></strong></td>
+                                </tr>
+                                <% }); %>
+                                    <% } %>
+                </tbody>
+                <!-- I coded up till here with no assistance -->
+            </table>
+
+            <!-- Navigation Button to return to organiser home -->
+            <div class="mt-4 text-center">
+                <a href="/organiser" class="btn btn-secondary">Back to Organiser Home</a>
+            </div>
+        </div>
+
+        <!-- I coded the following code with no assistance -->
+        <!-- Footer -->
+        <%- include('partials/organiser-footer') %>
+            <!-- I coded up till here with no assistance -->
+</body>
+
+</html>

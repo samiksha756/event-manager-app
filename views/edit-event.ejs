@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Event</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body class="container mt-5">
+    <!-- I coded the following code with no assistance -->
+    <!-- Header -->
+    <%- include('partials/organiser-header') %>
+        <br>
+
+        <!-- Page heading -->
+        <h1>Organiser Edit Event Page</h1>
+
+        <!-- Displays the original creation date of the event in readable format -->
+        <p><strong>Event Creation Date:</strong>
+            <%= new Date(event.created_at).toLocaleString('en-GB') %>
+        </p>
+        <!-- I coded up till here with no assistance -->
+
+        <!--Form section-->
+
+        <!-- Form allows organiser to update details of the selected event -->
+        <form action="/edit/<%= event.id %>" method="POST" class="needs-validation" novalidate>
+            <!-- Input field for the event's title -->
+            <!-- Required field with built-in validation -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Event Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="<%= event.title %>" required>
+                <div class="invalid-feedback">Event title is required.</div>
+            </div>
+
+            <!-- I coded the following code with no assistance -->
+            <!-- Textarea for event description -->
+            <!-- Required field for describing the event -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Event Description</label>
+                <textarea class="form-control" id="description" name="description"
+                    required><%= event.description %></textarea>
+                <div class="invalid-feedback">Event description is required.</div>
+            </div>
+
+            <!-- Date and time picker for specifying the event date -->
+            <div class="mb-3">
+                <label for="event_date" class="form-label">Event Date and Time</label>
+                <input type="datetime-local" class="form-control" id="event_date" name="event_date"
+                    value="<%= event.event_date ? event.event_date.slice(0, 16) : '' %>">
+            </div>
+            <!-- I coded up till here with no assistance -->
+
+            <!-- Full-Price Tickets Section -->
+            <div class="mb-3">
+                <label for="full_price_tickets" class="form-label">Number of Full-Price Tickets</label>
+                <input type="number" class="form-control" id="full_price_tickets" name="full_price_tickets"
+                    value="<%= event.full_price_tickets || 0 %>">
+            </div>
+
+            <!-- I coded the following code with no assistance -->
+            <div class="mb-3">
+                <label for="full_price_amount" class="form-label">Price of Full-Price Tickets ($)</label>
+                <input type="number" step="0.01" class="form-control" id="full_price_amount" name="full_price_amount"
+                    value="<%= event.full_price_amount || 0 %>">
+            </div>
+
+            <!-- Concession-Priced Tickets Section -->
+            <div class="mb-3">
+                <label for="concession_tickets" class="form-label">Number of Concession-Priced Tickets</label>
+                <input type="number" class="form-control" id="concession_tickets" name="concession_tickets"
+                    value="<%= event.concession_tickets || 0 %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="concession_amount" class="form-label">Price of Concession-Priced Tickets ($)</label>
+                <input type="number" step="0.01" class="form-control" id="concession_amount" name="concession_amount"
+                    value="<%= event.concession_amount || 0 %>">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Changes</button>
+            <a href="/organiser" class="btn btn-secondary">Back</a>
+        </form>
+        <!-- I coded up till here with no assistance -->
+
+        <!-- CLIENT-SIDE VALIDATION SCRIPT -->
+        <!-- Enables Bootstrap validation styles and prevents submission of invalid forms -->
+        <script>
+            (function () {
+                'use strict';
+                const forms = document.querySelectorAll('.needs-validation');
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            })();
+        </script>
+
+        <!-- I coded the following code with no assistance -->
+        <!-- Footer -->
+        <%- include('partials/organiser-footer') %>
+            <!-- I coded up till here with no assistance -->
+
+</body>
+
+</html>

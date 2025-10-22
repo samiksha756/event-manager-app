@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= event.title %> - Attendee Event Page
+    </title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<!-- I coded the following code with no assistance -->
+
+<body class="container mt-5">
+    <!-- Header -->
+    <%- include('partials/attendee-header') %>
+        <br>
+        <!-- Main heading -->
+        <h1>Attendee Event Page</h1>
+
+        <!-- Display event details -->
+        <p><strong>Title:</strong>
+            <%= event.title %>
+        </p>
+        <p><strong>Description:</strong>
+            <%= event.description %>
+        </p>
+        <p><strong>Created At:</strong>
+            <%= new Date(event.created_at).toLocaleString('en-GB') %>
+        </p>
+        <p><strong>Published At:</strong>
+            <%= new Date(event.published_at).toLocaleString('en-GB') %>
+        </p>
+        <p><strong>Event Date:</strong>
+            <%= new Date(event.event_date).toLocaleString('en-GB') %>
+        </p>
+        <!-- I coded up till here with no assistance —->
+
+            <!- Section for ticket information -->
+        <hr>
+        <h3>Ticket Information</h3>
+        <ul>
+            <li>Full-Price Tickets Available: <%= event.full_price_tickets %> @ $<%= event.full_price_amount %>
+            </li>
+            <li>Concession Tickets Available: <%= event.concession_tickets %> @ $<%= event.concession_amount %>
+            </li>
+        </ul>
+
+        <!-- Ticket booking form -->
+        <form action="/attendee/<%= event.id %>/book" method="POST" class="mb-4">
+            <div class="mb-3">
+                <label for="attendee_name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="attendee_name" name="attendee_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="full_price_quantity" class="form-label">Number of Full-Price Tickets</label>
+                <input type="number" class="form-control" id="full_price_quantity" name="full_price_quantity" min="0"
+                    max="<%= event.full_price_tickets %>" value="0">
+            </div>
+
+            <div class="mb-3">
+                <label for="concession_quantity" class="form-label">Number of Concession Tickets</label>
+                <input type="number" class="form-control" id="concession_quantity" name="concession_quantity" min="0"
+                    max="<%= event.concession_tickets %>" value="0">
+            </div>
+
+            <!-- I coded the following code with no assistance -->
+            <!-- Submit and navigation buttons -->
+            <button type="submit" class="btn btn-success">Book Tickets</button>
+            <a href="/attendee-home" class="btn btn-secondary">Back to Attendee Home Page</a>
+        </form>
+        <!-- Footer -->
+        <%- include('partials/attendee-footer') %>
+            <!-- I coded up till here with no assistance -->
+</body>
+
+</html>

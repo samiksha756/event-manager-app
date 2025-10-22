@@ -78,5 +78,18 @@ npm install
 # Windows (PowerShell)
 ``` Get-Content db_schema.sql | sqlite3 event_manager.sqlite ```
 
-> Your exact filenames may differ slightly — adjust paths accordingly.
+## Configuring environment
+```
+PORT=3000
+DB_PATH=./event_manager.sqlite
+```
+
+## Run the server
+# development (if nodemon is set up)
+npm run dev
+
+# or standard start
+npm start
+
+Open ``` http://localhost:3000 ```
 

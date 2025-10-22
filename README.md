@@ -25,7 +25,7 @@ It supports organiser and attendee flows, event publishing, ticket configuration
 
 ---
 
-## 🧩 Tech Stack
+## Tech Stack
 
 - **Server:** Node.js, Express.js
 - **Views:** EJS templates
@@ -35,7 +35,7 @@ It supports organiser and attendee flows, event publishing, ticket configuration
 
 ---
 
-## 📦 Project Structure (typical)
+## Project Structure (typical)
 ```
 event-manager/
 ├─ app.js # Express app entry (sometimes index.js)
@@ -62,7 +62,7 @@ event-manager/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1) Prerequisites
 - **Node.js** v18+ recommended
@@ -84,11 +84,11 @@ PORT=3000
 DB_PATH=./event_manager.sqlite
 ```
 
-## Run the server
-# development (if nodemon is set up)
+# Run the server
+## development (if nodemon is set up)
 npm run dev
 
-# or standard start
+## or standard start
 npm start
 
 Open ``` http://localhost:3000 ```
